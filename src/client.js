@@ -4,13 +4,13 @@ import { Provider } from 'react-redux';
 import { applyMiddleware, createStore } from "redux";
 import axios from 'axios';
 import thunk from 'redux-thunk';
-
 import { Router, Route, hashHistory } from "react-router";
 import { syncHistoryWithStore } from "react-router-redux";
 
 import Layout from "./Layout";
-import { dataUrl, numImgsOnPage } from "./constants";
+import { dataUrl } from "./constants";
 import reducers from "./reducers";
+import { IMG_DATA_RECEIVED_ACTION, ERROR_ACTION } from "./actions";
 
 const middleware = applyMiddleware(thunk);
 const store = createStore(reducers, middleware);
@@ -18,12 +18,11 @@ const store = createStore(reducers, middleware);
 store.dispatch((dispatch) => {
     axios.get(dataUrl)
         .then((response) => {
-            dispatch({type:"IMG_DATA_RECEIVED", payload: response.data });
-        }).catch((err) => { dispatch({type:"ERROR", payload: err}); });
+            dispatch({type: IMG_DATA_RECEIVED_ACTION, payload: response.data });
+        }).catch((err) => { dispatch({type: ERROR_ACTION, payload: err}); });
 });
 
 const history = syncHistoryWithStore(hashHistory, store);
-const app = document.getElementById('app');
 ReactDOM.render(
     <Provider store={store}>
         <Router history={history}>
@@ -31,4 +30,4 @@ ReactDOM.render(
             </Route>
         </Router>
     </Provider>
-, app);
+, document.getElementById('app'));

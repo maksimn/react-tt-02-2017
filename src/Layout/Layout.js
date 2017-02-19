@@ -5,6 +5,7 @@ import { numImgsOnPage } from "../constants";
 import styles from "./Layout.css";
 import ImageSetView from "../components/ImageSetView";
 import Pagination from "../components/Pagination";
+import { PAGINATION_LINK_CLICK_ACTION, FILTER_DATA_ACTION } from "../actions";
 
 class Layout extends React.Component {
     constructor() {
@@ -18,7 +19,7 @@ class Layout extends React.Component {
             this.selectedPgnLink = e.target;
             const ind = href.lastIndexOf("/") + 1;
             this.props.dispatch({
-                type: "PAGINGATION_LINK_CLICK",
+                type: PAGINATION_LINK_CLICK_ACTION,
                 payload: { 
                     pageNum: parseInt(href.substring(ind)), 
                     allData: this.props.allData,
@@ -34,18 +35,17 @@ class Layout extends React.Component {
                 this.selectedPgnLink.className = "";
             }
             if(e.target.value.length > 0) {
-                console.log("searchHandler call");
                 const searchStr = e.target.value;
                 const allData = this.props.allData;
                 const filteredData = 
                     allData.filter(x => { return x.title.indexOf(searchStr) !== -1; });
                 this.props.dispatch({
-                    type: "FILTER_DATA",
+                    type: FILTER_DATA_ACTION,
                     payload: filteredData
                 });
             } else {
                 this.props.dispatch({
-                    type: "FILTER_DATA",
+                    type: FILTER_DATA_ACTION,
                     payload: this.props.allData
                 });                
             }
