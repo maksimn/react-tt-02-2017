@@ -34,6 +34,7 @@ class Layout extends React.Component {
                 this.selectedPgnLink.className = "";
             }
             if(e.target.value.length > 0) {
+                console.log("searchHandler call");
                 const searchStr = e.target.value;
                 const allData = this.props.allData;
                 const filteredData = 
