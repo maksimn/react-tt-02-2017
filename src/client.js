@@ -6,6 +6,7 @@ import axios from 'axios';
 import thunk from 'redux-thunk';
 import { Router, Route, hashHistory } from "react-router";
 import { syncHistoryWithStore } from "react-router-redux";
+import Promise from "promise-polyfill";
 
 import Layout from "./Layout";
 import { dataUrl } from "./constants";
@@ -15,6 +16,9 @@ import { IMG_DATA_RECEIVED_ACTION, ERROR_ACTION } from "./actions";
 const middleware = applyMiddleware(thunk);
 const store = createStore(reducers, middleware);
 
+if (!window.Promise) {
+    window.Promise = Promise;
+}
 store.dispatch((dispatch) => {
     axios.get(dataUrl)
         .then((response) => {

@@ -1,5 +1,5 @@
 var debug = process.env.NODE_ENV !== "production";
-
+//debug = false;
 var webpack = require('webpack');
 var path = require('path');
 var ExtractTextPlugin = require('extract-text-webpack-plugin');
@@ -36,7 +36,7 @@ module.exports = {
     },
     plugins: debug ? [ new ExtractTextPlugin("index.css", { allChunks: true }) ]
         : 
-        [   
+        [   new ExtractTextPlugin("index.css", { allChunks: true }),
             new webpack.optimize.DedupePlugin(),
             new webpack.optimize.OccurenceOrderPlugin(),
             new webpack.optimize.UglifyJsPlugin({ mangle: false, sourcemap: false })
