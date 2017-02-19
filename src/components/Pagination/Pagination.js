@@ -12,6 +12,10 @@ export default class Pagination extends React.Component {
         this.props.linkClick(e);
     }
     render() {
+        if (this.props.numLinks == 1) {
+            return (<div id="pgn" className={ styles.paginationLinks }><a href="javascript: void(0)">1</a>
+                    </div>)
+        }
         let links = new Array(this.props.numLinks);
         for(let i = 0; i < links.length; i++) {
             links[i] = <Link key={i} onClick={ this.paginationLinkClick } to={(i + 1).toString()}>{i + 1}</Link>;

@@ -53,9 +53,8 @@ class Layout extends React.Component {
     }
 
     render() {
-        const numLinks = this.props.filteredData.length === 0 ? 
-                         Math.ceil(this.props.allData.length / numImgsOnPage) :
-                         Math.ceil(this.props.filteredData.length / numImgsOnPage);
+        let numLinks = Math.ceil(this.props.filteredData.length / numImgsOnPage);
+        if (numLinks === 0) { numLinks = 1; }
         return (
             <div>
                 <div style={ { margin: "10px 0 5px 20px "} }>
