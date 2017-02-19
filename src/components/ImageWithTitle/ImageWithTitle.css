@@ -1,0 +1,13 @@
+.imgAndTitle {
+     height: 210px;
+     width: 200px;
+     display: inline-block;
+     vertical-align: top;
+     overflow: hidden;
+     font-size: 14px;
+     padding: 10px 0 0 10px;
+}
+
+.titleForImg { 
+    margin-right: 25px; 
+}

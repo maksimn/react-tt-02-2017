@@ -1,0 +1,21 @@
+a {
+    text-decoration: none;
+    margin-right: 7px;
+    display: inline-block;
+}
+
+a:link, a:visited { color: black; }
+
+a.selectedPgnLink {
+    font-weight: bold;
+    color: #00f;
+    text-decoration: underline;
+}
+.paginationLinks {
+    position: fixed;
+    width: 100%;
+    padding: 7px 0 4px 10px;
+    bottom: 0;
+    border-top: 1px solid #000;
+    background-color: #eee;
+}
